@@ -16,13 +16,14 @@ module.exports = {
       next(err);
     }
   },
-  showSingleTodo: async (req, _res, next) => {
+  showSingleTodo: async (req, res, next) => {
     try {
       const { id } = req.params;
       const todo = await db.query('SELECT * FROM todos WHERE id =$1', [id]);
       if (todo.rowCount === 0) {
         throw createError.NotFound(`No todo with the id ${id}`);
       }
+      res.json(todo.rows);
     } catch (err) {
       next(err);
     }
@@ -59,7 +60,7 @@ module.exports = {
     try {
       const { id } = req.params;
       await db.query('DELETE FROM todos WHERE id = $1', [id]);
-      res.json('Delete todo');
+      res.json('Deleted todo');
     } catch (err) {
       next(err);
     }
