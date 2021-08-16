@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
+app.get('/', (_req, res) => {
   res.send('Hello World 😀');
 });
 
@@ -19,12 +19,12 @@ const todo = require('./routes/todo');
 
 app.use('/todo', todo);
 
-app.use(async (req, res, next) => {
+app.use(async (_req, _res, next) => {
   const error = createError.NotFound();
   next(error);
 });
 
-app.use((err, req, res) => {
+app.use((err, _req, res) => {
   res.status(err.status || 500);
   res.send({
     error: {
