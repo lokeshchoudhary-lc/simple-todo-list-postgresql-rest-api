@@ -10,6 +10,8 @@ _Steps to run application :_
 
 > `npm install`
 
+> `Make you own .env from .evn.example`
+
 > `npm start`
 
 _Npm Packages Used :_
